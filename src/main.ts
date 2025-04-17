@@ -23,6 +23,7 @@ function renderUnifiedZenPage() {
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
           </svg>
         </a>
+        <span class="copyright">© ${new Date().getFullYear()} Written. All rights reserved.</span>
       </footer>
     </section>
     <section class="zen-editor-section">
@@ -57,23 +58,30 @@ function renderUnifiedZenPage() {
       }
     });
   }
-  // Seamless transition to editor section on scroll or key
-  const heroSection = document.querySelector('.zen-hero-section');
-  const editorSection = document.querySelector('.zen-editor-section');
-  if (heroSection && editorSection) {
-    const scrollToEditor = () => {
-      editorSection.scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => {
-        editor?.focus();
-        // Removed class addition, visibility handled by CSS hover now
-      }, 500); // Delay matches typical smooth scroll duration
-      heroSection?.removeEventListener('wheel', scrollToEditor);
-      heroSection?.removeEventListener('keydown', scrollToEditor);
-      heroSection?.removeEventListener('touchstart', scrollToEditor);
-    };
-    heroSection.addEventListener('wheel', scrollToEditor, { once: true });
-    heroSection.addEventListener('keydown', scrollToEditor, { once: true });
-    heroSection.addEventListener('touchstart', scrollToEditor, { once: true });
+  
+  // Ensure page starts at hero section
+  window.scrollTo(0, 0);
+  history.scrollRestoration = 'manual';
+  // Prevent scroll jump on load
+  window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+  });
+  // Force scroll to top on initial load
+  document.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo(0, 0);
+  });
+
+  // Focus editor when it becomes visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.target.id === 'editor') {
+        (entry.target as HTMLTextAreaElement).focus();
+      }
+    });
+  });
+  
+  if (editor) {
+    observer.observe(editor);
   }
 }
 
