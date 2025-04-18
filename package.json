@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": "Khaled Eldahshan",
+  "status": "active",
+  "objectives": "To create a writing platform",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
