@@ -48,6 +48,13 @@ body {
   margin-top: 2rem;
 }
 
+.zen-storage-note {
+  font-size: 0.7rem;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
 .zen-export-area {
   position: fixed;
   bottom: 1rem;

@@ -27,6 +27,7 @@ function renderUnifiedZenPage() {
           </svg>
         </a>
         <span class="copyright">© ${new Date().getFullYear()} Written. All rights reserved.</span>
+        <div class="zen-storage-note">Notes are saved locally in your browser, not on any servers.</div>
       </footer>
     </section>
     <section class="zen-editor-section">
