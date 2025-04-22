@@ -3,335 +3,142 @@
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  font-weight: 700; /* Makes text bold/thick */
+  font-size: 18px;
   line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  color: #000;
+  background-color: #fff;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', system-ui, sans-serif;
-  background: linear-gradient(120deg, #f7fafc 0%, #e3ecf7 100%); /* Keep the gradient background for body */
-  color: #2d3748;
-  min-height: 100vh;
-  transition: background 0.6s cubic-bezier(0.4,0,0.2,1), color 0.4s; /* Consolidate transition here */
-}
-
-.hero-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: #f8f8f8;
-}
-
-.logo-circle {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-}
-
-.hero-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0 0 0.5rem 0;
-  letter-spacing: 0.01em;
-  text-transform: lowercase;
-}
-
-.hero-desc {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 2.5rem;
-  text-align: center;
-  max-width: 340px;
-  text-transform: lowercase;
-}
-
-.hero-btn {
-  background: #222;
-  color: #fff;
-  text-transform: lowercase;
-  border: none;
-  padding: 0.9rem 2.2rem;
-  border-radius: 999px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.18s;
-  outline: none;
-}
-.hero-btn:hover {
-  background: #444;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .zen-editor-section {
-  min-height: 100vh;
-  width: 100%;
-  background: linear-gradient(120deg, #f7fafc 0%, #e3ecf7 100%); /* Keep gradient for editor section */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem; /* Revert padding */
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  position: relative;
+  background: #fff !important;
+  border: 2px solid #000;
+  min-height: auto;
+  padding: 2rem;
 }
 
 #editor {
   width: 100%;
-  height: 100vh;
   min-height: 100vh;
-  max-width: 800px;
-  margin: 0 auto;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  padding: 2rem;
+  margin: 0;
   border: none;
   outline: none;
-  background: transparent; /* Transparent background */
-  color: #2d3748;
-  font-size: 1.25rem;
-  font-family: 'Inter', system-ui, sans-serif;
-  padding: 6vh 4vw; /* Adjusted padding */
   resize: none;
-  box-shadow: 0 2px 24px 0 rgba(44,62,80,0.04);
-  border-radius: 14px;
-  transition: background 0.6s cubic-bezier(0.4,0,0.2,1), color 0.4s;
-  caret-color: #6c63ff;
-  line-height: 1.7;
-  letter-spacing: 0.01em;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #b3c0d1 transparent;
-  animation: typingZen 0.7s;
 }
 
-#editor:focus {
-  background: #ffffff; /* Maintain subtle background on focus */
-  outline: none; /* Keep outline none */
+.zen-footer {
+  position: static;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 1rem;
+  margin-top: 2rem;
 }
 
 .zen-export-area {
   position: fixed;
-  top: 2rem;
-  right: 2rem;
-  display: flex;
-  gap: 1rem;
-  z-index: 20;
-  padding: 0.5rem; /* Add padding for hover area */
-  pointer-events: auto; /* Area is always hoverable */
-  /* Opacity will control button visibility, not the area itself */
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 100;
 }
 
-/* Remove the old hover rule for the area itself */
-/* .zen-export-area:hover { ... } */
+.zen-export-main {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.5;
+}
+
+.zen-export-main:hover,
+.zen-export-area:hover .zen-export-main {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.zen-export-options {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  display: none;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin-top: 0.25rem;
+}
+
+.zen-export-area:hover .zen-export-options {
+  display: flex;
+}
 
 .zen-export-btn {
-  color: #4a5568;
-  font-size: 0.9rem;
-  font-family: inherit;
-  background: none;
+  color: #000;
+  background: transparent;
   border: none;
-  outline: none;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  text-align: left;
   cursor: pointer;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  opacity: 0; /* Buttons initially invisible */
-  pointer-events: none; /* Buttons initially not interactable */
-  transition: opacity 0.3s ease-in-out, background 0.2s ease, color 0.2s ease; /* Combined transitions */
-  text-transform: lowercase;
 }
 
-/* Make buttons visible when hovering the export area */
-.zen-export-area:hover .zen-export-btn {
+.zen-export-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.zen-export-note {
+  display: none;
+}
+
+.zen-export-area {
+  border: 2px solid #000;
+  background: #fff;
+}
+
+.zen-export-btn {
+  color: #000;
+  background: #fff;
+  border: 1px solid #000;
   opacity: 1;
   pointer-events: auto;
 }
 
 .zen-export-btn:hover {
-  background: #edf2f7;
-  color: #2d3748;
+  background: #000;
+  color: #fff;
 }
 
 .zen-hero-section {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem; /* Adjusted gap */
-  padding: 2rem; /* Revert padding */
-  margin: 0;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  position: relative;
-  background: #f8f8f8;
-}
-
-.zen-logo-pro {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  /* Simplified styles for text logo container */
-  width: auto;
-  height: auto;
-  background: none;
-  box-shadow: none;
-  border: none;
-  transition: none;
-  user-select: none;
+  background: #fff;
+  border-bottom: 2px solid #000;
 }
 
 .zen-logo-text {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 2.6rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #6c63ff;
-  background: none;
-  padding: 0.2em 0.7em;
-  border-radius: 8px;
-  box-shadow: none; /* Removed shadow for cleaner text logo */
-  text-transform: lowercase;
+  color: #000;
+  text-decoration: underline;
 }
 
-
-
-
-
-@media (max-width: 768px) {
-  #editor {
-    font-size: 1.1rem;
-    padding: 4vh 3vw; /* Adjust padding for smaller screens */
-    max-width: 100%;
-  }
-  .zen-export-area {
-    top: 1rem;
-    right: 1rem;
-  }
-  .zen-features {
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1.5rem; /* Adjust margin */
-  }
-  .zen-title {
-    font-size: 2.5rem;
-  }
-  .zen-desc {
-    font-size: 1.2rem;
-  }
-}
-
-/* Removed duplicate definitions */
-
-.zen-logo-pro:hover {
-  /* No hover effect needed for simple text container */
-  transform: none;
-}
-
-.zen-title {
-  font-size: 3.2rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin: 0 0 0.5rem 0;
-  color: #2d3748;
-  font-family: 'Inter', system-ui, sans-serif;
-  text-align: center;
-  text-transform: lowercase;
-}
-
-.zen-desc {
-  font-size: 1.4rem;
-  color: #4a5568;
-  margin: 0;
-  text-align: center;
-  max-width: 460px;
-  font-family: inherit;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  text-transform: lowercase;
-}
-
-.zen-features {
-  display: flex;
-  flex-direction: row; /* Ensure horizontal layout */
-  gap: 2rem;
-  justify-content: center; /* Center features */
-  align-items: center; /* Align items vertically */
-  margin-top: 2rem;
-}
-
-.feature-item {
-  display: flex;
-  text-transform: lowercase;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-
-
-.feature-text {
-  font-size: 1rem;
-  color: #4a5568;
-  font-weight: 500;
-  margin: 0 0.5rem; /* Add slight horizontal margin */
-}
-
-.zen-hero-desc {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  gap: 0.2rem;
-}
-
-/* Footer Styles */
 .zen-footer {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.85rem;
-  color: #718096; /* Slightly muted color */
-  text-align: center;
-  width: 100%;
-  padding: 0 1rem;
-  box-sizing: border-box;
-  text-transform: lowercase;
+  border-top: 2px solid #000;
+  color: #000;
 }
 
 .zen-footer a {
-  color: #6c63ff; /* Use accent color for links */
-  text-decoration: none;
-  transition: color 0.2s ease;
+  color: #000;
+  text-decoration: underline;
 }
 
 .zen-footer a:hover {
@@ -416,4 +223,18 @@ body {
     color: #747bff;
   }
   /* Removed default light mode button style */
+}
+.zen-export-note {
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 0.65rem;
+  text-align: center;
+  margin-top: 0.15rem;
+  font-style: normal;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.zen-export-area:hover .zen-export-note {
+  opacity: 0.6;
 }

@@ -3,6 +3,9 @@ import './style.css'
 const app = document.querySelector<HTMLDivElement>('#app')!
 
 function renderUnifiedZenPage() {
+  // Remove all scroll-related code and keep only this
+  document.documentElement.scrollTop = 0;
+  
   app.innerHTML = `
     <section class="zen-hero-section" tabindex="0">
       <div class="zen-logo-pro" aria-label="Written Pro Logo">
@@ -28,12 +31,19 @@ function renderUnifiedZenPage() {
     </section>
     <section class="zen-editor-section">
       <div class="zen-export-area">
-        <span class="zen-export-btn" id="export-txt">export txt</span>
-        <span class="zen-export-btn" id="export-pdf">export pdf</span>
+        <div class="zen-export-main">export</div>
+        <div class="zen-export-options">
+          <button class="zen-export-btn" id="export-txt">txt</button>
+          <button class="zen-export-btn" id="export-pdf">pdf</button>
+        </div>
       </div>
-      <textarea id="editor" placeholder="start writing..." autofocus></textarea>
+      <textarea id="editor" placeholder="start writing..."></textarea>
     </section>
   `;
+  // Add click handler
+  document.querySelector('.zen-export-main')?.addEventListener('click', () => {
+    document.querySelector('.zen-export-options')?.classList.toggle('show');
+  });
   const editor = document.getElementById('editor') as HTMLTextAreaElement;
   if (editor) {
     editor.value = localStorage.getItem('written-note') || '';
@@ -71,6 +81,29 @@ function renderUnifiedZenPage() {
     window.scrollTo(0, 0);
   });
 
+  // Remove the IntersectionObserver completely
+  // Focus editor only when explicitly clicked/tapped
+  if (editor) {
+    editor.addEventListener('click', () => {
+      editor.focus();
+    });
+  }
+
+  // Add smooth scroll behavior to the body
+  document.body.style.scrollBehavior = 'smooth';
+
+  // Ensure page starts at hero section
+  window.scrollTo(0, 0);
+  history.scrollRestoration = 'manual';
+  // Prevent scroll jump on load
+  window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+  });
+  // Force scroll to top on initial load
+  document.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo(0, 0);
+  });
+
   // Focus editor when it becomes visible
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -82,6 +115,28 @@ function renderUnifiedZenPage() {
   
   if (editor) {
     observer.observe(editor);
+  }
+  
+  // Add this after editor setup
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
+    document.querySelector('.zen-hero-section')?.scrollIntoView();
+  }, 50);
+
+  // Release scroll lock after render completes
+  setTimeout(() => {
+    document.body.style.overflow = '';
+    window.scrollTo(0, 0);
+  }, 100);
+
+  // Simple click focus for editor
+  // Remove the duplicate editor declaration below
+  // Keep only the first declaration at line 40
+  if (editor) {
+    editor.addEventListener('click', () => editor.focus());
   }
 }
 
